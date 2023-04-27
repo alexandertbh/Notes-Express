@@ -9,15 +9,14 @@ const PORT = 3005;
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
-app.use(express.json);
+app.use(express.json());
 
-// app.use(express.static("public"));
+app.use(express.static("public"));
 
 app.get("/", (req, res) => {
-  res.send("Welcome to the home page");
-  //   res.sendFile(path.join(__dirname, "./public/index.html"));
+  // res.send("Welcome to the home page");
+  res.sendFile(path.join(__dirname, "./public/index.html"));
 });
-// app.get("/api/notes", (req, res) => res.json(db));
 
 app.get("/notes", (req, res) => {
   res.sendFile(path.join(__dirname, "/public/notes.html"));
@@ -45,19 +44,38 @@ app.post("/api/notes", (req, res) => {
       const { id, title, text } = req.body;
       if (title && text) {
         const newNote = {
-          id: uuid.v4(),
           title: req.body.title,
           text: req.body.text,
+          id: uuid.v4(),
         };
         console.log(newNote);
         dataArr.push(newNote);
       }
-      fs.writeFile("../db/db.json", JSON.stringify(dataArr, null, 4), (err) => {
+      fs.writeFile("./db/db.json", JSON.stringify(dataArr, null, 4), (err) => {
         if (err) {
           return res.status(500).json({ msg: "error writing db" });
         } else {
-          return res.json(newNote);
+          return res.json(dataArr);
         }
+      });
+    }
+  });
+});
+
+app.get("/api/notes/:notesID", (req, res) => {
+  fs.readFile("./db/db.json", "utf-8", (err, data) => {
+    if (err) {
+      return res.status(500).json({ msg: "error reading db" });
+    } else {
+      const notes = JSON.parse(data);
+      const notesID = req.params.notesID;
+      for (let i = 0; i < notes.length; i++) {
+        if (notes[i].id == notesID) {
+          return res.json(notes[i]);
+        }
+      }
+      return res.status(404).json({
+        msg: "no such sneaker!",
       });
     }
   });

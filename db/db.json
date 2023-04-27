@@ -1,6 +1,27 @@
 [
     {
-        "title":"Test Title",
-        "text":"Test text"
+        "id": "eaa5200d-6ea8-4a7e-b292-cdf740670bc9",
+        "title": "Test Title",
+        "text": "Test text"
+    },
+    {
+        "title": "adding a note",
+        "text": "testing",
+        "id": "8f8030b5-0c6f-4f13-a7f0-09bef832bf34"
+    },
+    {
+        "title": "alex ",
+        "text": "News",
+        "id": "c0260171-1b85-4346-8138-48796b2230b7"
+    },
+    {
+        "title": "TESTING ",
+        "text": "TESTING",
+        "id": "3b047c21-1a32-49e8-b68e-586f0b936737"
+    },
+    {
+        "title": "TESTING ",
+        "text": "TESTING AGAIN",
+        "id": "866c2b59-62e0-4a30-9890-96e51944a273"
     }
 ]
