@@ -81,6 +81,6 @@ app.get("/api/notes/:notesID", (req, res) => {
   });
 });
 
-app.listen(PORT, () => {
+app.listen(process.env.PORT, () => {
   console.log(`Example app listening at http://localhost:${PORT}`);
 });
