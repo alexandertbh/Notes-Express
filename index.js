@@ -4,8 +4,6 @@ const uuid = require("uuid");
 const fs = require("fs");
 const db = require("./db/db.json");
 
-const PORT = 3005;
-
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
@@ -81,6 +79,6 @@ app.get("/api/notes/:notesID", (req, res) => {
   });
 });
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT || 3005, () => {
   console.log(`Example app listening at http://localhost:${PORT}`);
 });
